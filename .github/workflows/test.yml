@@ -1,0 +1,27 @@
+name: Windows tests
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: windows-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install example dependency
+        run: python -m pip install -r requirements.txt
+      - name: Run behavior tests
+        run: python -m unittest discover -s tests -v
+      - name: Compile source
+        run: python -m compileall -q runloom examples
+      - name: Build source archive
+        run: python build.py

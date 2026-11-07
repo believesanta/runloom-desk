@@ -1,0 +1,4 @@
+Runloom sample notes
+
+This file is safe to copy, organize, and snapshot.
+Bundled examples preserve source files and write into a separate destination.
